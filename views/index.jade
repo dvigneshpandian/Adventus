@@ -1,0 +1,185 @@
+doctype 5
+html
+    head
+        title= Adventis
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(href='/stylesheets/jquery.bxslider.css', rel='stylesheet')
+        script(type='text/javascript',src='/javascripts/jquery.2.03.min.js')
+        script(type='text/javascript',src='/javascripts/jquery.bxslider.min.js')
+    body
+        div#wrapperDiv
+            div#header
+                div#logo
+                div#sort
+                    ul
+                        li Resdidencial
+                            input(type="checkbox", name="sort", value="Sort")
+                        li Commercial
+                            input(type="checkbox", name="sort", value="Sort")
+                        li Buy
+                            input(type="checkbox", name="sort", value="Sort")
+                        li Sell
+                            input(type="checkbox", name="sort", value="Sort")
+                        li Lease
+                            input(type="checkbox", name="sort", value="Sort")
+                div#list
+                    ul
+                        li: a(href="/", style="text-decoration: none") Home
+                        li: a(href="/about", style="text-decoration: none") About
+                        li: a(href="/properties", style="text-decoration: none") Properties
+                        li: a(href="/contact", style="text-decoration: none") Contact Us
+            if routePath === "home"
+                div#slider
+                    ul.bxslider
+                        li
+                            img(src="/images/1.fw.png",width="100%", height="280")
+                        li
+                            img(src="/images/2.fw.png",width="100%", height="280")
+                        li
+                            img(src="/images/3.fw.png",width="100%", height="280")
+                    script.
+                       $('.bxslider').bxSlider({
+                            width: '1000',
+                            auto: true,
+                            mode: 'fade',
+                            controls: false,
+                            pager: false
+                        });
+                div#bodyDiv
+                    div#number
+                        img(src="/images/Phone Image.png",style="margin-bottom:-5px;margin-right: 5px;width: 35px;height: 40px;")
+                        a 02-222-222-222
+                    img(src="/images/Divide_Line_small.fw.png", id="image")
+                    div#detail Call for personalized reality guide
+                    img(src="/images/Divide_Line_Center_Big.fw.png", width="100%")
+                    div#about
+                        div#services
+                            img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 30px")
+                            h4 Our Services :
+                            img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 30px")
+                            ul
+                                li High-end Real Estate Broking
+                                li Real Estate Investment Options
+                                li On-line Property Exhibition
+                                li Housing Loans
+                                li Farm House design & construction
+                                li Landscaping
+                        div#thumbs
+                            ul
+                                li
+                                    img(src="/images/Thumb1.fw.png", width="150px",height="100px")
+                                li
+                                    img(src="/images/Thumb2.fw.png", width="150px",height="100px")
+                                li
+                                    img(src="/images/Thumb3.fw.png", width="150px",height="100px")
+                                li
+                                    img(src="/images/Thumb4.fw.png", width="150px",height="100px")
+                        div#border
+                        div#about_us
+                            img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 30px")
+                            h4 Why Adventus :
+                            img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 30px")
+                            div#sliderDiv
+                                ul.slider
+                                    li
+                                        p By changing the fundamental process of home search through a location based platforms that scouts accomdation has taken the innovativelead of bringing houses of user insted.
+                                    li
+                                        p By changing the fundamental process of home search through a location based platforms that scouts accomdation has taken the innovativelead of bringing houses of user insted.
+                                    li
+                                        p By changing the fundamental process of home search through a location based platforms that scouts accomdation has taken the innovativelead of bringing houses of user insted.
+                                script.
+                                    $('.slider').bxSlider({
+                                        width: '250',
+                                        minSlides: 1,
+                                        maxSlides: 1,
+                                        moveSlides: 1,
+                                        auto: true,
+                                        mode: 'horizontal',
+                                        pager: false
+                                    });
+            else if routePath === "about"
+                div#about_body
+                    img(src="/images/1about.fw.png",width="100%")
+                    div#content
+                        img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 50px")
+                        h3 About Us
+                        img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 50px")
+                        p There are too many property portals on the web already but we are not one of them! We are convinced that real estate cannot be traded on the net like stocks or cars. The reason- its value depends on too many external factors like neighbourhood; infrastructure; development plans; connectivity; climate etc. Above all, the hardest nut to crack is the complex legal aspects.
+                        p Adventus operates in the top layer of the real estate business with personalised services. Our professional consultants and legal experts carefully research and evaluate each high value lead before we recommend the property to a prospective buyer or investor. We take great pains to ensure that a customer is not short-changed and continues to be associated with us for life ! We don't stop here, we also offer buy back option should our patron opts to liquidate the investment !
+                    img(src="/images/Divide_Line_Center_Big.fw.png",width="100%")
+                    div#thumbs_about
+                        ul
+                            li
+                                img(src="/images/Thumb1about.fw.png", width="250px",height="175px")
+                            li
+                                img(src="/images/Thumb2about.fw.png", width="250px",height="175px")
+                            li
+                                img(src="/images/Thumb3about.fw.png", width="250px",height="175px")
+                            li
+                                img(src="/images/Thumb4about.fw.png", width="250px",height="175px")
+                            li
+                                img(src="/images/Thumb5about.fw.png", width="250px",height="175px")
+            else if routePath === "contact"
+                div#contact_content
+                    img(src="/images/contact.fw.png", width="100%")
+                    div#contact_body
+                        img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 50px")
+                        h3 Contact Us :
+                        img(src="/images/Line_OurServic.fw.png",width="150px", style="margin-left: 50px")
+                        div#contact_detail
+                            div#contact_us
+                                div#heading_contact
+                                    img(src="/images/ContactUs Email.fw.png",style="margin-left: 20px; margin-top: 20px;")
+                                    a Contact Us :
+                                form(method="POST", id="form")
+                                    input(type="name", name="Name", value="name", id="name")
+                                    input(type="email", name="Email", id="mail")
+                                    br
+                                    input(type="text", name="website",id="website")
+                                    br
+                                    input(type="text", name="Subject",id="subject")
+                                    br
+                                    textarea(type="message", name="message")
+                                    input(type="submit", name="Submit",id="submit", value="Submit")
+                                div#words_contact
+                                    p#para To find more about our services or to help us with your work and corporate identify, please fill in the form and click on submit.
+                                    p#para1 Alternatively, please email us at info@adventusweb.com or you can talk on phone.
+                                    a Tel 02-222-222-222
+                                    br
+                                    a Skype Username
+                                    br
+                                    a Email: info@adventusweb.com
+                                    br
+                                    a website: www.adventusindia.com
+                                    br
+                                    br
+                                    br
+                                    a Thank You
+                            div#address
+                                a Address:
+                                br
+                                | 104 First Floor,
+                                br
+                                | Orchid Complex,
+                                br
+                                | Vishrantwadi,
+                                br
+                                | Pune-411006
+                                h4 website:www,adventusindia.com
+            div#footer
+                h4 Most popular Cities
+                ul
+                    li Mumbai
+                    li Pune
+                    li Aurangabad
+                    li Nanded
+                    li Amrawati
+                    li Jalgaon
+                    li Lonavala
+                div#socialNetwork
+                    a Follow Us
+                    div#facebook
+                    div#twitter
+                    div#youtube
+                    div#vimeo
+

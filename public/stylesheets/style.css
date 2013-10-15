@@ -1,0 +1,574 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url(../font/HelveticaNeue.ttf);
+}
+
+@font-face {
+    font-family: upcel;
+    src: url(../font/upcel.ttf);
+}
+
+*{
+    font-family: "Helvetica Neue",sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font: 14px Helvetica Neue,sans-serif;
+}
+
+a {
+  color: #EFF6E1;
+}
+
+#wrapperDiv{
+    width: 100%;
+    height: 600px;
+}
+
+#header{
+    background: url("../images/Top%20Bar.fw.png");
+    min-width: 100%;
+    height: 55px;
+}
+
+#header div{
+    display: inline-block;
+}
+
+#logo{
+    width: 100px;
+    height: 55px;
+    background: url("../images/Adventus%20Logo.fw.png")no-repeat center;
+    background-size: contain;
+    margin-left: 5px;
+}
+
+#sort{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#sort ul{
+    vertical-align: bottom;
+    width: 350px;
+    display: inline-block;
+    margin-top: 16px;
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 20px;
+}
+
+#sort ul li{
+    margin: 0 auto;
+    width: 20%;
+    border: 0 none;
+    font: 12px HelveticaNeue,sans-serif;
+    color: #EFF6E1;
+    text-align: left;
+    vertical-align: 50%;
+    display: inline-block;
+}
+
+#sort ul li:first-child{
+    width: 29%;
+}
+
+#sort ul li:nth-child(2){
+    width: 27%;
+}
+
+#sort ul li:nth-child(3){
+    width: 14%;
+}
+
+#sort ul li:nth-child(4){
+    width: 14%;
+}
+
+#sort ul li:last-child{
+    width: 16%;
+}
+
+#list{
+    display: inline-block;
+    float: right;
+}
+
+#list ul{
+    width: 300px;
+    display: inline-block;
+    list-style: none;
+    margin-bottom: 0;
+    padding-top: 6px;
+}
+
+#list ul li{
+    margin: 0 auto;
+    width: 20%;
+    border: 0 none;
+    font-size: 12px;
+    text-align: center;
+    border-right: 1px solid #EFF6E1;
+    color: #EFF6E1;
+    vertical-align: 50%;
+    display: inline-block;
+}
+
+#list ul li:first-child{
+    width: 17%;
+}
+
+#list ul li:nth-child(3){
+    width: 25%;
+}
+
+#list ul li:last-child{
+    width: 25%;
+    border-right: 0 none;
+}
+
+
+#slider ul{
+    padding: 0;
+    margin: 0 auto;
+}
+
+#bodyDiv{
+    width: 100%;
+    background-color: #ececec;
+}
+
+#number{
+    width: 400px;
+    height: 40px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    font: 60px upcel,sans-serif;
+    color: #555552;
+    text-align: center;
+}
+
+#number a{
+    font: 60px upcel,sans-serif;
+    color: #555552;
+}
+
+#image{
+    width: 500px;
+    margin-left: 30%;
+}
+
+#detail{
+    margin: 0 auto;
+    text-align: center;
+    color: #555552;
+    padding-top: 20px;
+    height: 70px;
+    font:30px HelveticaNeue,sans-serif;
+}
+
+#about{
+    width: 100%;
+    background-color: #DFDFD0;
+    border-top: 1px solid #AFAFAC;
+    border-bottom: 1px solid #AFAFAC;
+}
+
+#about div{
+    display: inline-block;
+}
+
+#services{
+    width: 33%;
+    color: #555552;
+    vertical-align: top;
+}
+
+#services h4{
+    margin-left: 50px;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 150px;
+}
+
+#services ul{
+    list-style-image:url('../images/arrow_1.png');
+    width: 280px;
+    margin-left: 35px;
+    border-right: 1px solid #555552;
+}
+
+#services ul li{
+    line-height: 21px;
+    height: 20px;
+}
+
+#thumbs{
+    width:33%;
+}
+
+#thumbs ul{
+    width: 400px;
+    display: inline-block;
+    list-style: none;
+    padding-left:0;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+#thumbs ul li{
+    width: 49%;
+    text-align: center;
+    display: inline-block;
+}
+
+#border{
+    height: 120px;
+    vertical-align: top;
+    margin-top: 65px;
+    border-right: 1px solid #555552;
+}
+
+#sliderDiv{
+    width:250px;
+    margin: 0 auto;
+}
+
+#about_us{
+    width: 33%;
+    color: #555552;
+    vertical-align: top;
+}
+
+#about_us div{
+    display: block;
+}
+
+#about_us h4{
+    margin-left: 50px;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 150px;
+}
+
+#about_us ul{
+    margin: 0;
+    padding: 0;
+}
+
+
+#about_us p{
+    width: 250px;
+}
+
+#footer{
+    background-image: url("../images/Bottom%20Bar.fw.png");
+    width: 100%;
+    height: 55px;
+}
+
+#footer div{
+    display: inline-block;
+}
+
+#footer h4{
+    color: #EFF6E1;
+    width: 137px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    padding-top: 10px;
+    border-bottom: 1px solid #EFF6E1;
+}
+
+
+
+#footer ul{
+    width: 800px;
+    list-style: none;
+    color: #EFF6E1;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-right: 0;
+}
+
+#footer ul li{
+    width: 10%;
+    border-right: 1px solid #EFF6E1;
+    text-align: center;
+    display: inline-block;
+}
+
+#footer ul li:last-child{
+    border: 0 none;
+}
+
+#socialNetwork{
+    width: 200px;
+    color: #EFF6E1;
+    /*position: absolute;
+    top: 810px;
+    left: 85%;*/
+    float: right;
+    margin-top: -15px;
+}
+
+#socialNetwork div{
+    display: inline-block;
+}
+
+#socialNetwork a{
+    color: #EFF6E1;
+}
+
+#facebook{
+    background-image: url("../images/facebook.png");
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+}
+
+#twitter{
+    background-image: url("../images/twitter.png");
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+#youtube{
+    background-image: url("../images/youtube.png");
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+#vimeo{
+    background-image: url("../images/vimeo.png");
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+/*----------------------------------------------------------About us Page Style---------------------------------------------------------*/
+
+#about_body{
+    width: 100%;
+    background-color: #ececec;
+}
+
+#content{
+    width: 100%;
+}
+
+#content h3{
+    width: 130px;
+    color: #555552;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 85px;
+}
+
+#content p{
+    width: 84%;
+    color: #555552;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 8%;
+    margin-top: 5px;
+}
+
+#thumbs_about{
+    width:100%;
+    background-color: #DFDFD0;
+    border-top: 1px solid #AFAFAC;
+    border-bottom: 1px solid #AFAFAC;
+}
+
+#thumbs_about ul{
+    width: 100%;
+    height: 210px;
+    display: inline-block;
+    list-style: none;
+    padding-left:0;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+#thumbs_about ul li{
+    width: 20%;
+    text-align: center;
+    display: inline-block;
+}
+
+/*---------------------------------------------Contact Us page Style-------------------------------------------------------------*/
+
+#contact_content{
+    width: 100%;
+    background-color: #ececec;
+}
+
+#contact_body{
+    width: 100%;
+    height: 500px;
+}
+
+#contact_body h3{
+    width: 130px;
+    color: #585858;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 80px;
+}
+
+#contact_detail{
+    width: 100%;
+}
+
+#contact_detail div{
+    display: inline-block;
+}
+
+#contact_us{
+    width: 50%;
+    height: 390px;
+    margin-top: 20px;
+    margin-left: 7%;
+    background-color: #A0F949;
+    border: 2px solid #777777;
+}
+
+#contact_us div{
+    display: inline-block;
+}
+
+#heading_contact{
+    width: 300px;
+}
+
+#heading_contact div{
+    display: inline-block;
+}
+
+#image_contact{
+    width: 35px;
+    height: 25px;
+    background: url("../images/ContactUs%20Email.fw.png")no-repeat;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#heading_contact a{
+    font-size: 26px;
+    color: #555552;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: bottom;
+    width: 150px;
+}
+
+#name, #mail,#website,#subject,#submit{
+    padding: 8px;
+    /*font: normal 12px Verdana, Tahoma, sans-serif;*/
+    color: #999999;
+    border: 2px solid #999999;
+    width: 148px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    /* box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;/*0.1 actually means 10 %*/
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+textarea {
+    width: 342px;
+    max-width: 600px;
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 125px;
+    border: 2px solid #999999;
+    border-radius: 5px;
+    /*line-height: 150%;  */
+    color: #999999;
+}
+
+#form{
+    width: 366px;
+}
+
+#name{
+    margin-right:10px;
+}
+
+#mail{
+    margin-left: 0;
+}
+
+#website,#subject{
+    width: 326px;
+}
+
+#submit{
+    background-color: #ffffff;
+    border-radius: 0;
+}
+
+#words_contact{
+    width: 285px;
+    height: 310px;
+    background-color: #ffffff;
+    float: right;
+    margin-top: -320px;
+    margin-right: 10px;
+    border: 2px solid #999999;
+    border-radius: 3px;
+}
+
+#para{
+    color: #999999;
+    width: 241px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#para1{
+    color: #999999;
+    width: 241px;
+    margin-left: 20px;
+    margin-top: 0;
+}
+
+#words_contact a{
+    color: #999999;
+    width: 241px;
+    margin-left: 20px;
+    margin-top: 0;
+}
+
+#address{
+    width: 200px;
+    vertical-align: top;
+    margin-left: 150px;
+    margin-top: 100px;
+    color: #999999;
+}
+
+#address a{
+    color: #999999;
+    margin-left: -25px;
+}
+
+#address h4{
+    float: left;
+    margin-top: 46%;
+    margin-left: -13%;
+}
