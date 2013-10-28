@@ -129,6 +129,17 @@ a {
     border-right: 0 none;
 }
 
+#searchBar{
+    /*background-color : transparent;*/
+    background-color : #ffffff;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 99;
+    top: 155px;
+    left: 75px;
+    width:340px;
+    height: 30px;
+}
 
 #slider ul{
     padding: 0;
@@ -436,7 +447,7 @@ a {
 }
 
 #contact_us{
-    width: 50%;
+    width: 55%;
     height: 390px;
     margin-top: 20px;
     margin-left: 7%;
@@ -556,6 +567,7 @@ textarea {
 
 #address{
     width: 200px;
+    font-size: 18px;
     vertical-align: top;
     margin-left: 150px;
     margin-top: 100px;
@@ -571,4 +583,34 @@ textarea {
     float: left;
     margin-top: 46%;
     margin-left: -13%;
+}
+
+/*----------------------------------------------------Search Page Style----------------------------------------------*/
+#search{
+    width: 40%;
+    height: 500px;
+    margin: 0 auto;
+}
+
+#MapDiv2 div{
+    display: inline-block;
+}
+
+#bannerAdText{
+    margin: 100px auto;
+    color: #a1a1a1;
+}
+
+#MapDiv2 ul li:first-child{
+    border: 0 none;
+    width:34%;
+    overflow-y: scroll;
+    margin: 0 10px 0 10px;
+    max-height: 640px;
+}
+
+#MapDiv2 ul li:last-child{
+    border: 0 none;
+    width: 62%;
+    padding: 0 0 0 0;
 }

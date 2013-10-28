@@ -1,11 +1,13 @@
 doctype 5
 html
     head
-        title= Adventis
+        title Adventis
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(href='/stylesheets/jquery.bxslider.css', rel='stylesheet')
         script(type='text/javascript',src='/javascripts/jquery.2.03.min.js')
         script(type='text/javascript',src='/javascripts/jquery.bxslider.min.js')
+        script(type='text/javascript', src='https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js')
+        script(type='text/javascript',src='/javascripts/main.js')
     body
         div#wrapperDiv
             div#header
@@ -26,8 +28,10 @@ html
                     ul
                         li: a(href="/", style="text-decoration: none") Home
                         li: a(href="/about", style="text-decoration: none") About
-                        li: a(href="/properties", style="text-decoration: none") Properties
+                        li: a(href="/add", style="text-decoration: none") add
+                        li: a(href="/map", style="text-decoration: none") Properties
                         li: a(href="/contact", style="text-decoration: none") Contact Us
+            input(type="text",id="searchBar",placeholder="City,Place")
             if routePath === "home"
                 div#slider
                     ul.bxslider
@@ -132,14 +136,14 @@ html
                                     img(src="/images/ContactUs Email.fw.png",style="margin-left: 20px; margin-top: 20px;")
                                     a Contact Us :
                                 form(method="POST", id="form")
-                                    input(type="name", name="Name", value="name", id="name")
-                                    input(type="email", name="Email", id="mail")
+                                    input(type="name", name="Name", placeholder="Name", id="name")
+                                    input(type="email", name="Email", id="mail",placeholder="Email")
                                     br
-                                    input(type="text", name="website",id="website")
+                                    input(type="text", name="website",id="website",placeholder="Website")
                                     br
-                                    input(type="text", name="Subject",id="subject")
+                                    input(type="text", name="Subject",id="subject",placeholder="Subject")
                                     br
-                                    textarea(type="message", name="message")
+                                    textarea(type="message", name="message",placeholder="Your Text Here...")
                                     input(type="submit", name="Submit",id="submit", value="Submit")
                                 div#words_contact
                                     p#para To find more about our services or to help us with your work and corporate identify, please fill in the form and click on submit.
@@ -165,7 +169,367 @@ html
                                 | Vishrantwadi,
                                 br
                                 | Pune-411006
-                                h4 website:www,adventusindia.com
+                                h4 website:www.adventusindia.com
+            else if routePath === "map"
+                div#MapDiv2
+                    script.
+                        var map;
+                        var propertyList = JSON.parse( !{JSON.stringify(products)} );
+                        function initialize() {
+                        // Initial Map Options.
+                        var mapOptions = {
+                            zoom:14,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+
+                        // Loading Map
+
+                        map = new google.maps.Map(document.getElementById('MapDiv2'), mapOptions);
+
+                        // Loading location as per Geolocation
+                        if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            console.log(propertyList[0].LatLng.latitude+"::"+propertyList[0].LatLng.longitude)
+                            console.log
+                            var pos = new google.maps.LatLng(propertyList[0].LatLng.latitude, propertyList[0].LatLng.longitude);
+                        console.log("----loading---");
+                        // Function for Clustering
+                        // Loading properties in Map using marker array from DB
+                            var markers = [];
+                            var infoWindows = [];
+                            for (var i = 0; i < propertyList.length; i++) {
+                                var latLng = new google.maps.LatLng(propertyList[i].LatLng.latitude, propertyList[i].LatLng.longitude);
+                                var marker = new google.maps.Marker({'position': latLng, infoWindowIndex : i});
+                                var content = '<div id=mapHoverInfo><p style="font-size:14px">'
+                                                +propertyList[i].address.line1+", "
+                                                +propertyList[i].address.line2+", "
+                                                +propertyList[i].address.city+", "
+                                                +propertyList[i].address.zip
+                                                +"</p>"
+                                                +"<ul><li>"+"Type:"+propertyList[i].type+"</li>"
+                                                +"<li>Price:"+propertyList[i].price+"</li></ul>"
+                                                +"</div>"
+                                                +"<div id=mapHoverInfoPicture>"
+                                                +"<ul><li><p>Beds:"+propertyList[i].bedrooms+"</p>"
+                                                +"<p>Baths:"+propertyList[i].bathrooms+"</p>"
+                                                +"<p>Area:"+propertyList[i].area+"sqft</p>"
+                                                +"<p>Built:2005</p>"
+                                                +'<p>More:<img width=10 height=10 src="../images/blue%20arrow.png"></p></li>'
+                                                +'<li>'+'<img width=100 height=100 src='+propertyList[i].picture+'>'+'</li></ul></div>'
+                                                +"<div id=mapHoverInfoOptions>"
+                                                +'<ul><li><img width=35 height=35 src="../images/button.png"></li>'
+                                                +'<li><img width=35 height=35 src="../images/save.png"></li>'
+                                                +'<li><img width=35 height=35 src="../images/select.png"></li>'
+                                                +'<li><img width=33 height=33 src="../images/messgae.png"></li></ul>'
+                                                +"</div>";
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content : content
+                                });
+                                google.maps.event.addListener(marker, 'click',
+                                    function(event)
+                                    {
+                                        infoWindows[this.infoWindowIndex].open(map, this);
+                                    }
+                                );
+                                /*
+                                google.maps.event.addListener(marker, 'mouseout',
+                                    function(event)
+                                    {
+                                        infoWindows[this.infoWindowIndex].close();
+                                    }
+                                );*/
+                                infoWindows.push(infoWindow);
+                                markers.push(marker);
+                            }
+                            var markerCluster = new MarkerClusterer(map, markers, mapOptions);
+                        // End of Clustering
+
+                        // Setting up the Map position.
+                            map.setCenter(pos);
+
+                        // Function for Places.
+                        // Not sure about Markers array please go through it when time permits
+                        // End of the Places Library
+
+                        // Reverse Geocoder function to get location city and state in Readable format
+                        // Also populate in area search box
+
+                            geocoder = new google.maps.Geocoder();
+                        var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        geocoder.geocode({'location': location }, function (results, status) {
+
+                        if (status == google.maps.GeocoderStatus.OK) {
+                        //Check result 0
+                        var result = results[0];
+                        //look for locality tag and administrative_area_level_1
+                        var city = "";
+                        var state = "";
+                        var postalCode= "";
+                        for (var i = 0, len = result.address_components.length; i < len; i++) {
+
+                        var ac = result.address_components[i];
+                        if (ac.types.indexOf("locality") >= 0) city = ac.long_name;
+                        if (ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.short_name;
+                        if (ac.types.indexOf("postal_code") >= 0) postalCode = ac.long_name;
+
+                        }
+                        //only report if we got Good Stuff
+                        if (city != '' && state != '') {
+                        document.getElementById("serachFunctionComboBox").value = city + ',' + state;
+                        document.getElementById("serachFunctionInputText").value = postalCode;
+                            } else {
+                                console.log('Geocoder failed' + status)
+                                }
+                                }
+                                });
+                        }, function () {
+                            handleNoGeolocation(true);
+                        });
+                        }
+                        else {
+                        handleNoGeolocation(false);
+                        }
+                        }
+
+                        // Test for Geolocation.
+
+                        function handleNoGeolocation(errorFlag) {
+                        if (errorFlag) {
+                            var content = 'Error: The Geolocation service failed.';
+                        } else {
+                            var content = 'Error: Your browser doesn\'t support geolocation.';
+                        }
+                        var options = {
+                            map: map,
+                            position: new google.maps.LatLng(60, 105),
+                            content: content
+                        };
+                        var infowindow = new google.maps.InfoWindow(options);
+                        map.setCenter(options.position);
+                        }
+
+                        // Loading main Javascript for Map
+
+
+                        function loadScript() {
+                            var script = document.createElement('script');
+                            script.type = 'text/javascript';
+                            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+                                'callback=initialize&libraries=geometry&libraries=places';
+                            document.body.appendChild(script);
+                        }
+
+                        window.onload = loadScript;
+
+            else if routePath === "searchFailed"
+                p
+                    h1#searchFailedMessage Could Not Find Any Properties matching Your criteria.Please Try again.
+            else if routePath === "search"
+                div#search
+                    div#MapDiv
+                        script.
+                            var map;
+                            function initialize() {
+                            // Initial Map Options.
+                            var mapOptions = {
+                                zoom: 14,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+
+                            // Loading Map
+
+                            map = new google.maps.Map(document.getElementById('MapDiv'), mapOptions);
+
+                            // Loading location as per Geolocation
+                            if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                console.log
+                                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                            console.log(pos+"----loading---");
+                            // Function for Clustering
+                            // Loading properties in Map using marker array from DB
+                                var markers = [];
+                                var infoWindows = [];
+                                var markerCluster = new MarkerClusterer(map, markers, mapOptions);
+                            // End of Clustering
+
+                            // Setting up the Map position.
+                                map.setCenter(pos);
+
+                            // Function for Places.
+                            // Not sure about Markers array please go through it when time permits
+                            // End of the Places Library
+
+                            // Reverse Geocoder function to get location city and state in Readable format
+                            // Also populate in area search box
+
+                                geocoder = new google.maps.Geocoder();
+                            var location = pos;
+                            geocoder.geocode({'location': location }, function (results, status) {
+
+                            if (status == google.maps.GeocoderStatus.OK) {
+                            //Check result 0
+                            var result = results[0];
+                            //look for locality tag and administrative_area_level_1
+                            var city = "";
+                            var state = "";
+                            var postalCode="";
+                            for (var i = 0, len = result.address_components.length; i < len; i++) {
+
+                            var ac = result.address_components[i];
+                            if (ac.types.indexOf("locality") >= 0) city = ac.long_name;
+                            if (ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.short_name;
+                            if (ac.types.indexOf("postal_code") >= 0) postalCode = ac.long_name;
+                            //console.log(postalCode)
+                            //console.log("**************************")
+                            }
+                            //only report if we got Good Stuff
+                            if (city != '' && state != '') {
+
+                                } else {
+                                    console.log('Geocoder failed' + status)
+                                    }
+                                    }
+                                    });
+                            }, function () {
+                                handleNoGeolocation(true);
+                            });
+                            }
+                            else {
+                            handleNoGeolocation(false);
+                            }
+                            }
+
+                            // Test for Geolocation.
+
+                            function handleNoGeolocation(errorFlag) {
+                            if (errorFlag) {
+                                var content = 'Error: The Geolocation service failed.';
+                            } else {
+                                var content = 'Error: Your browser doesn\'t support geolocation.';
+                            }
+                            var options = {
+                                map: map,
+                                position: new google.maps.LatLng(60, 105),
+                                content: content
+                            };
+                            var infowindow = new google.maps.InfoWindow(options);
+                            map.setCenter(options.position);
+                            }
+
+                            // Loading main Javascript for Map
+
+
+                            function loadScript() {
+                                var script = document.createElement('script');
+                                script.type = 'text/javascript';
+                                script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+                                    'callback=initialize&libraries=geometry&libraries=places';
+                                document.body.appendChild(script);
+                            }
+
+                            window.onload = loadScript;
+            else if routePath === "Add"
+                form(method="POST",action="/properties")
+                    p#Addelements Name for Property :
+                        input(type="text", name="productName")
+                    p#Addelements Type for the Product :
+                        input(type="text", name="productType")
+                    p#Addelements Type for the Property (Sale/Rental etc) :
+                        input(type="text", name="type")
+                    p#Addelements Property Price :
+                        input(type="number", name="price")
+                    p#Addelements Property's Number of Bedrooms :
+                        input(type="number", name="bedrooms")
+                    p#Addelements Property's Number of Bathrooms :
+                        input(type="number", name="bathrooms")
+                    p#Addelements Property's Area :
+                        input(type="number", name="area")
+                    p#Addelements Property's Amenities :
+                        input(type="text", name="amenities")
+                    p#Addelements Property's Comments :
+                        input(type="text", name="comments_from_user")
+                    p#Addelements Property's Address line1 :
+                        input(type="text", name="line1")
+                    p#Addelements Property's Address line2:
+                        input(type="text", name="line2")
+                    p#Addelements Property's City:
+                        input(type="text", name="city")
+                    p#Addelements Property's State:
+                        input(type="text", name="state")
+                    p#Addelements Property's Country:
+                        input(type="text", name="country")
+                    p#Addelements Property's Zip:
+                        input(type="text", name="zip")
+                    p#Addelements Property's Latitude :
+                        input(type="float", name="latitude")
+                    p#Addelements Property's Longitude :
+                        input(type="float", name="longitude")
+                    button#serachFunctionButton(type="submit", name="AddProduct") Add Product
+            else if routePath === "Edit"
+                div#dispaly
+                    h3 Update Products
+                    form(method="POST",action="/properties/#{product.productName}",enctype='multipart/form-data')
+                        input(type="hidden", name="_method", value="PUT")
+                        p#Addelements Name for Property :
+                            input(type="text", name="name", value="#{product.productName}")
+                        p#Addelements Type for the Property (Sale/Rental etc) :
+                            input(type="text", name="type", value="#{product.type}")
+                        p#Addelements Property Price :
+                            input(type="number", name="price", value="#{product.price}")
+                        p#Addelements Property's Number of Bedrooms :
+                            input(type="number", name="bedrooms", value="#{product.bedrooms}")
+                        p#Addelements Property's Number of Bathrooms :
+                            input(type="number", name="bathrooms", value="#{product.bathrooms}")
+                        p#Addelements Property's Area :
+                            input(type="number", name="area", value="#{product.area}")
+                        p#Addelements Property's Amenities :
+                            input(type="text", name="amenities", value="#{product.amenities}")
+                        p#Addelements Property's Comments :
+                            input(type="text", name="comments_from_user", value="#{product.comments_from_user}")
+                        p#Addelements Property's Address line1 :
+                            input(type="text", name="line1", value="#{product.address.line1}")
+                        p#Addelements Property's Address line2:
+                            input(type="text", name="line2", value="#{product.address.line2}")
+                        p#Addelements Property's City:
+                            input(type="text", name="city", value="#{product.address.city}")
+                        p#Addelements Property's State:
+                            input(type="text", name="state", value="#{product.address.state}")
+                        p#Addelements Property's Country:
+                            input(type="text", name="country", value="#{product.address.country}")
+                        p#Addelements Property's Zip:
+                            input(type="text", name="zip", value="#{product.address.zip}")
+                        p#Addelements Property's Latitude :
+                            input(type="float", name="latitude", value="#{product.LatLng.latitude}")
+                        p#Addelements Property's Longitude :
+                            input(type="float", name="longitude", value="#{product.LatLng.longitude}")
+                        p#Addelements Property's Image :
+                            input(type="file", name="picture")
+                        button#serachFunctionButton(type="submit") Update
+            else if routePath === "Show"
+                div#dispaly
+                    p Name for Property : #{product.productName}
+                    p Type for the Property (Sale/Rental etc) : #{product.type}
+                    p Property Price : #{product.price}
+                    p Property's Number of Bedrooms : #{product.bedrooms}
+                    p Property's Number of Bathrooms : #{product.bathrooms}
+                    p Property's Area : #{product.area}
+                    p Property's Amenities : #{product.amenities}
+                    p Property's Comments : #{product.comments_from_user}
+                    p Property's Address line1 : #{product.address.line1}
+                    p Property's Address line2 : #{product.address.line2}
+                    p Property's City: #{product.address.city}
+                    p Property's State: #{product.address.state}
+                    p Property's Country: #{product.address.country}
+                    p Property's Zip: #{product.address.zip}
+                    p Property's Latitude : #{product.LatLng.latitude}
+                    p Property's Longitude : #{product.LatLng.longitude}
+                    img(src="#{product.picture}", width="32", height="32")
+                    a(href="/properties/#{product.productName}/edit", style="text-decoration: none")
+                        h3 Edit
+                        form(action="/properties/#{product.productName}", method="POST")
+                            input(type="hidden", name="_method", value="DELETE")
+                            button#serachFunctionButton(type="submit", name="Delete") Delete
             div#footer
                 h4 Most popular Cities
                 ul
@@ -182,4 +546,3 @@ html
                     div#twitter
                     div#youtube
                     div#vimeo
-
