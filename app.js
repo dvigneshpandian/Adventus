@@ -7,7 +7,7 @@ var routes = require('./routes');
 var productRoutes = require('./routes/product');
 var user = require('./routes/user');
 var about = require('./routes/about');
-var map = require('./routes/map');
+//var map = require('./routes/map');
 var contact = require('./routes/contact');
 var mongoose = require('mongoose');
 var http = require('http');
@@ -45,7 +45,7 @@ app.get('/properties/:name/edit', productRoutes.edit);
 app.put('/properties/:name', productRoutes.update);
 app.delete('/properties/:name', productRoutes.remove);
 app.post('/search',productRoutes.search);
-app.get('/map',productRoutes.getmap);
+app.get('/map',productRoutes.map);
 
 app.get('/', routes.index);
 app.get('/about', about.index);

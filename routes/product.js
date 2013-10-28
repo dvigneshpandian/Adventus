@@ -203,7 +203,7 @@ exports.search = function (req, res) {
             console.log('prop_type:'+req.body.prop_type);
             if(docs.length > 0){
                 console.log("Not Failed"+docs.length);
-                res.render('map', {products: JSON.stringify(docs), routePath: "map"});
+                res.render('search', {products: JSON.stringify(docs), routePath: "map"});
             }else{
                 console.log("Failed"+docs.length);
                 res.render('index', {products:failedSearchMessage , routePath: "searchFailed"});
@@ -211,8 +211,8 @@ exports.search = function (req, res) {
         });
 };
 
-exports.getmap = function(req, res){
-    res.render('map', {products:JSON.stringify(results), routePath: "map"});
+exports.map = function(req, res){
+    res.render('index', {products:JSON.stringify(results), routePath: "map"});
 };
 
 exports.searchList =function(req,res){
@@ -222,5 +222,5 @@ exports.searchList =function(req,res){
 
 exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
-    res.render('map', {products:JSON.stringify(results), routePath: "map"});
+    res.render('search', {products:JSON.stringify(results), routePath: "map"});
 };

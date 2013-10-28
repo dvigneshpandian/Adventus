@@ -14,14 +14,11 @@ exprots.home = function (req, res) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
 
-<<<<<<< .mine
                     var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-=======
             var infowindow = new google.maps.InfoWindow({
                 content: '<br>Your Location<br>',
                 maxWidth: 200
             });
->>>>>>> .r27
 
                     var infowindow = new google.maps.InfoWindow({
                         content: '<h1>Your Location<br>',
