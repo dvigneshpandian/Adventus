@@ -45,7 +45,7 @@ app.get('/properties/:name/edit', productRoutes.edit);
 app.put('/properties/:name', productRoutes.update);
 app.delete('/properties/:name', productRoutes.remove);
 app.post('/search',productRoutes.search);
-app.get('/map',productRoutes.map);
+app.get('/map',productRoutes.index);
 
 app.get('/', routes.index);
 app.get('/about', about.index);

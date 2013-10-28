@@ -40,7 +40,7 @@ var propertyModel = mongoose.model('Property', propertySchema);
 exports.index = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi'});
+        res.render('index', {products: JSON.stringify(docs), routePath: "map", title: 'All Properties'});
     });
 };
 
@@ -90,7 +90,7 @@ exports.pass = function (req, res, next, name) {
 };
 
 exports.show = function (req, res) {
-    var  pic=path.join('/images',path.basename(req.product.picture));
+    //var  pic=path.join('/images',path.basename(req.product.picture));
     res.render('index', { product: req.product,  routePath: "Show", title: 'Edit Product - By Sandeep Pagi' });
 };
 
@@ -210,11 +210,11 @@ exports.search = function (req, res) {
             }
         });
 };
-
+/*
 exports.map = function(req, res){
     res.render('index', {products:JSON.stringify(results), routePath: "map"});
 };
-
+*/
 exports.searchList =function(req,res){
     console.log("results in searchLink"+results);
     res.render('search', {products:JSON.stringify(results), routePath: "searchList"});
@@ -224,3 +224,4 @@ exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
     res.render('search', {products:JSON.stringify(results), routePath: "map"});
 };
+
