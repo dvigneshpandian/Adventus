@@ -587,7 +587,19 @@ textarea {
 
 /*----------------------------------------------------Search Page Style----------------------------------------------*/
 #search{
-    width: 40%;
+    width: 100%;
+    height: 600px;
+    display: inline-flex;
+}
+
+#properties{
+    width: 30%;
+    height: 100%;
+    background-color: #cecece;
+}
+
+#map{
+    width: 70%;
     height: 500px;
     margin: 0 auto;
 }
@@ -613,4 +625,72 @@ textarea {
     border: 0 none;
     width: 62%;
     padding: 0 0 0 0;
+}
+
+#propertyname{
+    margin-left: 132px;
+}
+
+#producttype{
+    margin-left: 117px;
+}
+
+#propertytype{
+    margin-left: 3px;
+}
+
+#propertyprice{
+    margin-left: 158px;
+}
+
+#propertybed{
+    margin-left: 47px;
+}
+
+#propertybath{
+    margin-left: 43px;
+}
+
+#propertyarea{
+    margin-left: 150px;
+}
+
+#propertyamenities{
+    margin-left: 120px;
+}
+
+#propertycomment{
+    margin-left: 114px;
+}
+
+#propertyadd1{
+    margin-left: 94px;
+}
+
+#propertyadd2{
+    margin-left: 97px;
+}
+
+#propertycity{
+    margin-left: 160px;
+}
+
+#propertystate{
+    margin-left: 151px;
+}
+
+#propertycountry{
+    margin-left: 132px;
+}
+
+#propertyzip{
+    margin-left: 163px;
+}
+
+#propertylat{
+    margin-left: 127px;
+}
+
+#propertylong{
+    margin-left: 115px;
 }
